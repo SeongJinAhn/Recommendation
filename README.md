@@ -22,8 +22,8 @@ e.g) buying present
 ### Spearman Rank
 
 ## MAP & MLE
-![MAP](image/MAP.PNG){: width="50%" height="50%"}
-![MLE](image/MLE.PNG){: width="50%" height="50%"}
+![MAP,20%](image/MAP.PNG,20%)
+![MLE,20%](image/MLE.PNG,20%)
 
 ## Past Approaches
 ### User-based CF
