@@ -1,5 +1,5 @@
 # Recommendation
-![MAP](image/recommend_formula.PNG)
+![MAP](image/recommend_formula.PNG)  
 estimating the ratings of each unobserverd entry in Y, which are used for ranking the items.
 
 
@@ -37,8 +37,12 @@ just recommend the item resemble with selected
 
 # Paper
 ## BPR : Bayesian Personalized Ranking from Implicit Feedback
-## Matrix Factorization techniques for recommender systems.
-![MAP](image/LFM.PNG)
-p_i, q_j : latent representation
-predicted_ij = dot of p_i, q_j
+## Matrix Factorization Techniques for Recommender Systems
+Use p_i, q_j which are latent representations of users & items
+Predict by 'dot of p_i, q_j'
+![MAP](image/LFM.PNG)  
 ## Neural Collaborative Filtering
+Automatically learn the function F
+## Deep Matrix Factorization Models for Recommender Systems
+Use LFM (use inner product to calculate the interaction between users & items)  
+Use representation learning (Deep Structured Semantic Models) instead of learning F.
