@@ -42,13 +42,13 @@ need Neighbor that is n users who are resemble with the user we want to predict
 just recommend the item resemble with selected
 
 # Paper
-## BPR : Bayesian Personalized Ranking from Implicit Feedback
-## Matrix Factorization Techniques for Recommender Systems
+## Bayesian Personalized Ranking from Implicit Feedback (BPR)
+## Matrix Factorization Techniques for Recommender Systems (LFM)
 Use p_i, q_j which are latent representations of users & items
 Predict by 'dot of p_i, q_j'
 ![MAP](image/LFM.PNG)  
-## Neural Collaborative Filtering
+## Neural Collaborative Filtering (NCF)
 Automatically learn the function F
-## Deep Matrix Factorization Models for Recommender Systems
+## Deep Matrix Factorization Models for Recommender Systems (DeepMF)
 Use LFM (use inner product to calculate the interaction between users & items)  
 Use representation learning (Deep Structured Semantic Models) instead of learning F.
