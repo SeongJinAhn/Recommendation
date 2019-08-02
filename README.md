@@ -28,6 +28,12 @@ e.g) buying present
 ![MAP](image/MAP.PNG)
 ![MLE](image/MLE.PNG)
 
+## Loss Function
+### Squared Loss
+based on the assumption that observation are generated from a Gaussian distribution
+### Cross-Entropy Loss
+target value is a binary classification problem
+
 ## Past Approaches
 ### User-based CF
 need Neighbor that is n users who are resemble with the user we want to predict  
