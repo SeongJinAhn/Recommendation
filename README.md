@@ -26,8 +26,7 @@ e.g) buying present
 
 ## MAP & MLE
 <img src="/image/MAP.PNG" width="30%" height="30%">
-![MAP](image/MAP.PNG) {:width="30%" height="30%"}
-![MLE](image/MLE.PNG) {:width="30%" height="30%"}
+<img src="/image/MLE.PNG" width="30%" height="30%">
 
 ## Loss Function
 ### Squared Loss
@@ -68,3 +67,4 @@ how to aggregate the preference of group members to decide a group's choice on i
 ## Attentive Group Recommendation (AGREE)
 U : users {u_1, u_2, ... u_n} G : groups {g_1, g_2, ... g_s} V : items {v_1, v_2, ... v_m}  
 Y : group-item interaction [y_ij]s x m M : user-item interaction [r_ij]n x m  
+<img src="/image/AGREE1.PNG" width="30%" height="30%">
