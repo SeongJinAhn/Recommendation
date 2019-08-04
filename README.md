@@ -66,5 +66,17 @@ how to aggregate the preference of group members to decide a group's choice on i
 
 ## Attentive Group Recommendation (AGREE)
 U : users {u_1, u_2, ... u_n} G : groups {g_1, g_2, ... g_s} V : items {v_1, v_2, ... v_m}  
-Y : group-item interaction [y_ij]s x m M : user-item interaction [r_ij]n x m  
-<img src="/image/AGREE1.PNG" width="30%" height="30%">
+Y : group-item interaction [y_ij]s x m  
+M : user-item interaction [r_ij]n x m  
+
+g_l(j) : predicted preference of the item j over group l (our goal)  
+        1) User Embedding Aggregation + 2) Group Preference Embedding
+<img src="/image/AGREE0.PNG">
+  
+1) User Embedding Aggregation  
+특정 그룹(고정)내에서 t를 구매하는데에 j의 영향력을 구하고 그것들의 linear sum을 해당그룹이 t를 구매할 가능성으로 보았다.  
+α(j,t) : a learnable parameter denoting the influence of member user u_t in deciding the group’s choice on item v_j  
+<img src="/image/AGREE1.PNG" width="60%" height="60%">
+
+2) Group Preference Embedding  
+<img src="/image/AGREE2.PNG" width="60%" height="60%">
