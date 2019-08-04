@@ -79,4 +79,4 @@ g_l(j) : predicted preference of the item j over group l (our goal)
 <img src="/image/AGREE1.PNG" width="60%" height="60%">
 
 2) Group Preference Embedding  
-<img src="/image/AGREE2.PNG" width="60%" height="60%">
+<img src="/image/AGREE2.PNG" width="80%" height="80%">
