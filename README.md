@@ -43,6 +43,8 @@ just recommend the item resemble with selected
 
 # Paper
 ## Bayesian Personalized Ranking from Implicit Feedback (BPR)
+
+
 ## Matrix Factorization Techniques for Recommender Systems (LFM)
 Use p_i, q_j which are latent representations of users & items
 Predict by 'dot of p_i, q_j'
@@ -52,3 +54,16 @@ Automatically learn the function F
 ## Deep Matrix Factorization Models for Recommender Systems (DeepMF)
 Use LFM (use inner product to calculate the interaction between users & items)  
 Use representation learning (Deep Structured Semantic Models) instead of learning F.
+
+# Group Recommendation
+how to aggregate the preference of group members to decide a group's choice on item.
+
+## Group recommendation using feature space representing behavioral tendency and power balance among members (NCF)
+
+
+## Genarative Model for Group Recommendation (COM)  
+
+
+## Attentive Group Recommendation (AGREE)
+U : users {u_1, u_2, ... u_n} G : groups {g_1, g_2, ... g_s} V : items {v_1, v_2, ... v_m}  
+Y : group-item interaction [y_ij]s x m M : user-item interaction [r_ij]n x m  
