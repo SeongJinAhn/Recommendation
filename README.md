@@ -25,8 +25,9 @@ e.g) buying present
 ### Spearman Rank
 
 ## MAP & MLE
-![MAP](image/MAP.PNG){: width="100" height="100"}
-![MLE](image/MLE.PNG){:width="100" height="100"}
+<img src="/image/MAP.PNG" width="30%" height="30%">
+![MAP](image/MAP.PNG) {:width="30%" height="30%"}
+![MLE](image/MLE.PNG) {:width="30%" height="30%"}
 
 ## Loss Function
 ### Squared Loss
