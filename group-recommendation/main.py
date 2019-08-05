@@ -20,20 +20,8 @@ from dataset import GDataset
 
 # train the model
 def training(model, train_loader, epoch_id, config, type_m):
-    # user trainning
-    learning_rates = config.lr
-    # learning rate decay
-    lr = learning_rates[0]
-    if epoch_id >= 15 and epoch_id < 25:
-        lr = learning_rates[1]
-    elif epoch_id >=20:
-        lr = learning_rates[2]
-    # lr decay
-    if epoch_id % 5 == 0:
-        lr /= 2
-
-    # optimizer
-    optimizer = optim.RMSprop(model.parameters(), lr)
+    lr = config.lr
+    optimizer = optim.Adam(model.parameters(), lr)
 
     losses = 0
     for batch_id, (u, pi_ni) in enumerate(train_loader):
@@ -43,15 +31,15 @@ def training(model, train_loader, epoch_id, config, type_m):
         neg_item_input = pi_ni[:, 1]
         # Forward      모델을 2개돌리고 합쳐서 loss로 한다
         if type_m == 'user':
-            pos_prediction = model(None, user_input, pos_item_input)
-            neg_prediction = model(None, user_input, neg_item_input)
+            pos_pred = model(None, user_input, pos_item_input)
+            neg_pred = model(None, user_input, neg_item_input)
         elif type_m == 'group':
-            pos_prediction = model(user_input, None, pos_item_input)
-            neg_prediction = model(user_input, None, neg_item_input)
+            pos_pred = model(user_input, None, pos_item_input)
+            neg_pred = model(user_input, None, neg_item_input)
         # Zero_grad
         model.zero_grad()
         # Loss
-        loss = torch.mean((pos_prediction - neg_prediction -1) **2)
+        loss = torch.mean((pos_pred - neg_pred -1) **2)
         # record loss history
         losses += float(loss)  
         # Backward
@@ -61,24 +49,12 @@ def training(model, train_loader, epoch_id, config, type_m):
     losses /= batch_id
     print('Iteration %d, loss is [%.4f ]' % (epoch_id, losses))
 
-
-
-
-def evaluation(model, helper, testRatings, testNegatives, K, type_m):
-    model.eval()
-    (hits, ndcgs) = helper.evaluate_model(model, testRatings, testNegatives, K, type_m)
-    hr, ndcg = np.array(hits).mean(), np.array(ndcgs).mean()
-    return hr, ndcg
-
-
 if __name__ == '__main__':
     config = Config()
     helper = Helper()
 
     # get the dict of users in group
     g_m_d = helper.gen_group_member_dict(config.user_in_group_path)
-
-    # initial dataSet class
     dataset = GDataset(config.user_dataset, config.group_dataset, config.num_negatives)
 
     # get group number
@@ -98,24 +74,4 @@ if __name__ == '__main__':
         training(agree, dataset.get_user_dataloader(config.batch_size), epoch, config, 'user')
         training(agree, dataset.get_group_dataloader(config.batch_size), epoch, config, 'group')
         print("user and group training time is: [%.1f s]" % (time()-t1))
-        # evaluation
-        t2 = time()
-#        u_hr, u_ndcg = evaluation(agree, helper, dataset.user_testRatings, dataset.user_testNegatives, config.topK, 'user')
-#        print('User Iteration %d [%.1f s]: HR = %.4f, NDCG = %.4f, [%.1f s]' % (
-#            epoch, time() - t1, u_hr, u_ndcg, time() - t2))
-
-#        hr, ndcg = evaluation(agree, helper, dataset.group_testRatings, dataset.group_testNegatives, config.topK, 'group')
-#        print(
-#            'Group Iteration %d [%.1f s]: HR = %.4f, '
-#            'NDCG = %.4f, [%.1f s]' % (epoch, time() - t1, hr, ndcg, time() - t2))
     print("Done!")
-
-
-
-
-
-
-
-
-
-
