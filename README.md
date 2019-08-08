@@ -49,7 +49,7 @@ just recommend the item resemble with selected
 Use p_i, q_j which are latent representations of users & items
 Predict by 'dot of p_i, q_j'
 ![MAP](image/LFM.PNG)  
-## Neural Collaborative Filtering (NCF)
+## [Neural Collaborative Filtering (NCF)](https://www.ijcai.org/proceedings/2017/0447.pdf)  
 Automatically learn the function F
 ## [Deep Matrix Factorization Models for Recommender Systems (DeepMF)](https://www.ijcai.org/proceedings/2017/0447.pdf)
 Use LFM (use inner product to calculate the interaction between users & items)  
@@ -58,10 +58,10 @@ Use representation learning (Deep Structured Semantic Models) instead of learnin
 ## [Group recommendation using feature space representing behavioral tendency and power balance among members (NCF)](https://dl.acm.org/citation.cfm?id=2043953)  
 
 
-## Genarative Model for Group Recommendation (COM)  
+## [Genarative Model for Group Recommendation (COM)](https://dl.acm.org/ft_gateway.cfm?ftid=1494840&id=2623616)  
 
 
-## Attentive Group Recommendation (AGREE)
+## [Attentive Group Recommendation (AGREE)](https://www.ijcai.org/proceedings/2017/0447.pdf)  
 U : users {u_1, u_2, ... u_n} G : groups {g_1, g_2, ... g_s} V : items {v_1, v_2, ... v_m}  
 Y : group-item interaction [y_ij]s x m  
 M : user-item interaction [r_ij]n x m  
