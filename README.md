@@ -55,9 +55,6 @@ Automatically learn the function F
 Use LFM (use inner product to calculate the interaction between users & items)  
 Use representation learning (Deep Structured Semantic Models) instead of learning F.
 
-# Group Recommendation
-how to aggregate the preference of group members to decide a group's choice on item.
-
 ## Group recommendation using feature space representing behavioral tendency and power balance among members (NCF)
 
 
@@ -84,7 +81,10 @@ Hence they calcualate the importance of a person in group.
 2) Group Preference Embedding  
 <img src="/image/AGREE2.PNG" width="80%" height="80%">  
 
-### What is Attentional Network??  
+## What is Attentional Network??  
+목적 : Learns the importance of each feature interaction from data via a neural network.
+기존 방법 : Augment a feature vector with products of features (aka. cross features) (Polynomial Regression)
+
 [Attentional Factorization Machines:Learning the Weight of Feature Interactions via Attention Networks](https://arxiv.org/abs/1708.04617)
 <img src="/image/attentive_network.PNG" width="80%" height="80%">
 
