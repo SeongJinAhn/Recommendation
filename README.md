@@ -72,7 +72,10 @@ M : user-item interaction [r_ij]n x m
 g_l(j) : predicted preference of the item j over group l (our goal)  
         1) User Embedding Aggregation + 2) Group Preference Embedding
 <img src="/image/AGREE0.PNG">
-  
+
+By neural attention mechanism, learn the importance of different model components from data.  
+Hence they calcualate the importance of a person in group.
+
 1) User Embedding Aggregation  
 특정 그룹(고정)내에서 t를 구매하는데에 j의 영향력을 구하고 그것들의 linear sum을 해당그룹이 t를 구매할 가능성으로 보았다.  
 α(j,t) : a learnable parameter denoting the influence of member user u_t in deciding the group’s choice on item v_j  
