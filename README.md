@@ -82,8 +82,14 @@ Hence they calcualate the importance of a person in group.
 <img src="/image/AGREE2.PNG" width="80%" height="80%">  
 
 ## What is Attentional Network??  
-목적 : Learns the importance of each feature interaction from data via a neural network.
-기존 방법 : Augment a feature vector with products of features (aka. cross features) (Polynomial Regression)
+Learn the importance of each feature interaction from data via a neural network.  
+Purpose : Learn the importance of each feature interaction  
+Common Solution1 : Augment a feature vector with product of features.(Poloynomial Regression : PR)  
+Problem of CS1: In sparse dataset, only a few cross features are observed. So the parameters for unobserved cross features cannot be estimated.  
+Common Solution2 : Learning an embedding vector for each feature, and estimate the weight for any cross feature (Factorization Matrix : FM)  
+Problem of CS2 : May result in suboptimal prediction (local maxima)
+Solution they suggest : Attentive Facorization Matrix
+ 
 
 [Attentional Factorization Machines:Learning the Weight of Feature Interactions via Attention Networks](https://arxiv.org/abs/1708.04617)
 <img src="/image/attentive_network.PNG" width="80%" height="80%">
