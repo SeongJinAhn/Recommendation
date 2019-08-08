@@ -79,8 +79,9 @@ g_l(j) : predicted preference of the item j over group l (our goal)
 <img src="/image/AGREE1.PNG" width="80%" height="80%">
 
 2) Group Preference Embedding  
-<img src="/image/AGREE2.PNG" width="80%" height="80%">
-### What is Attentional Network??
+<img src="/image/AGREE2.PNG" width="80%" height="80%">  
+
+### What is Attentional Network??  
 [Attentional Factorization Machines:Learning the Weight of Feature Interactions via Attention Networks](https://arxiv.org/abs/1708.04617)
 <img src="/image/attentive_network.PNG" width="80%" height="80%">
 
