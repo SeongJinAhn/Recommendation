@@ -81,7 +81,7 @@ Hence they calcualate the importance of a person in group.
 2) Group Preference Embedding  
 <img src="/image/AGREE2.PNG" width="80%" height="80%">  
 
-## What is Attentional Network??  
+## [Attentional Factorization Machines: Learning the Weight of Feature Interactions via Attention Networks](https://arxiv.org/abs/1708.04617)  
 Learn the importance of each feature interaction from data via a neural network.  
 Purpose : Learn the importance of each feature interaction  
 Common Solution1 : Augment a feature vector with product of features.(Poloynomial Regression : PR)  
@@ -91,7 +91,6 @@ Problem of CS2 : May result in suboptimal prediction (local maxima)
 Solution they suggest : Attentive Facorization Matrix
  
 
-[Attentional Factorization Machines:Learning the Weight of Feature Interactions via Attention Networks](https://arxiv.org/abs/1708.04617)
 <img src="/image/attentive_network.PNG" width="80%" height="80%">
 
 ## Group Preference Based Bayesian Personalized Ranking for One-Class Collaborative Filtering (GBPR)
