@@ -80,3 +80,5 @@ g_l(j) : predicted preference of the item j over group l (our goal)
 
 2) Group Preference Embedding  
 <img src="/image/AGREE2.PNG" width="80%" height="80%">
+
+## Group Preference Based Bayesian Personalized Ranking for One-Class Collaborative Filtering (GBPR)
