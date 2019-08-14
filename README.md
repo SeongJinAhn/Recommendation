@@ -73,7 +73,7 @@ g_l(j) : 논문에서 group의 특성을 잘 담았다고 정의한 vector
 
 특정 그룹(고정)내에서 t를 구매하는데에 j의 영향력을 구하고 그것들의 linear sum을 해당그룹이 t를 구매할 가능성으로 보았다.  
 α(j,t) : t가 j를 사게하는데의 영향력  
-\sum_{t} ( a(j,t) * u_t ) : linear sum of a(j,t) * Embedding(j)으로 영향력이 반영된 group의 vector  
+$\sum_{t} ( a(j,t) * u_t )$ : linear sum of a(j,t) * Embedding(j)으로 영향력이 반영된 group의 vector  
 q_l : 구성원의 합이 아닌, 그룹 자체만의 특성을 나타낸 vector  
 
 <img src="/image/AGREE1.PNG" width="80%" height="80%">
