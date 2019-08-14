@@ -66,19 +66,17 @@ U : users {u_1, u_2, ... u_n} G : groups {g_1, g_2, ... g_s} V : items {v_1, v_2
 Y : group-item interaction [y_ij]s x m  
 M : user-item interaction [r_ij]n x m  
 
-g_l(j) : predicted preference of the item j over group l (our goal)  
-        1) User Embedding Aggregation + 2) Group Preference Embedding
+g_l(j) : 논문에서 group의 특성을 잘 담았다고 정의한 vector  
+        \sigma ( a(j,t) * u_t) + q_l
+
 <img src="/image/AGREE0.PNG">
 
-By neural attention mechanism, learn the importance of different model components from data.  
-Hence they calcualate the importance of a person in group.
-
-1) User Embedding Aggregation  
 특정 그룹(고정)내에서 t를 구매하는데에 j의 영향력을 구하고 그것들의 linear sum을 해당그룹이 t를 구매할 가능성으로 보았다.  
-α(j,t) : a learnable parameter denoting the influence of member user u_t in deciding the group’s choice on item v_j  
-<img src="/image/AGREE1.PNG" width="80%" height="80%">
+α(j,t) : t가 j를 사게하는데의 영향력  
+\sigma ( a(j,t) * u_t ) : linear sum of a(j,t) * Embedding(j)으로 영향력이 반영된 group의 vector  
+q_l : 구성원의 합이 아닌, 그룹 자체만의 특성을 나타낸 vector  
 
-2) Group Preference Embedding  
+<img src="/image/AGREE1.PNG" width="80%" height="80%">
 <img src="/image/AGREE2.PNG" width="80%" height="80%">  
 
 ## [Attentional Factorization Machines: Learning the Weight of Feature Interactions via Attention Networks](https://arxiv.org/abs/1708.04617)  
