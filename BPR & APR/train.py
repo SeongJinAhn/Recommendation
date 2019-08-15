@@ -63,20 +63,6 @@ class BPR(nn.Module):
 
 
 def precision_and_recall_k(user_emb, item_emb, train_w, test_w, klist):
-    """Compute precision at k using GPU.
-
-    Args:
-        user_emb (torch.Tensor): embedding for user (shape [user_num, dim])
-        item_emb (torch.Tensor): embedding for item (shape [item_num, dim])
-        train_w (torch.Tensor): mask array for train record (shape [user_num, item_num])
-        test_w (torch.Tensor): mask array for test record (shape [user_num, item_num])
-        k (list(int)): list of k
-    Returns:
-        (torch.Tensor, torch.Tensor) Precision and recall at k
-    """
-    # Compute all pair of training and test record
-    # Reason why do sigmoid is sigmoid and compress value into [0, 1]
-    # And we are going to make useless value to zero to make smallest value
     result = torch.mm(user_emb, item_emb.t())
     result = torch.sigmoid(result)
 
