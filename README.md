@@ -98,8 +98,13 @@ Solution they suggest : Attentive Facorization Matrix
 ![A3NCF](image/A3NCF_architecture.PNG)  
   
 #### 1. Topic Model  
+Latent Dirichlet Allocation
 #### 2. Embedding  
 #### 3. Fusion  
-#### 4. Attention Network  
-#### 5. Attentive Interaction  
-6. Rating Prediction  
+fuse the embedded features and review-based features for better representation learning.  
+adopt the **addiction fusion (Not Concat)** which has been applied in RBLT and ITLFM.  
+#### 4. Attentive Interaction  
+<img src="/image/A3NCF_attention.PNG" width="50%" height="50%">
+<img src="/image/A3NCF_attention2.PNG" width="30%" height="30%">
+#### 5. Rating Prediction  
+<img src="/image/A3NCF_prediction.PNG" width="50%" height="50%">
