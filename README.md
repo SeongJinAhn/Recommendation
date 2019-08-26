@@ -93,18 +93,18 @@ Solution they suggest : Attentive Facorization Matrix
 
 ## Group Preference Based Bayesian Personalized Ranking for One-Class Collaborative Filtering (GBPR)
 
-## [A3NCF : An adaptive aspective attention model for rating prediction]
-(https://www.ijcai.org/proceedings/2018/0521.pdf)  
+## [A3NCF : An adaptive aspective attention model for rating prediction](https://www.ijcai.org/proceedings/2018/0521.pdf)  
 ![A3NCF](image/A3NCF_architecture.PNG)  
   
 #### 1. Topic Model  
 Latent Dirichlet Allocation
+<img src="/image/A3NCF_topic.PNG" width="50%" height="50%">  
 #### 2. Embedding  
 #### 3. Fusion  
 fuse the embedded features and review-based features for better representation learning.  
 adopt the **addiction fusion (Not Concat)** which has been applied in RBLT and ITLFM.  
 #### 4. Attentive Interaction  
-<img src="/image/A3NCF_attention.PNG" width="50%" height="50%">
-<img src="/image/A3NCF_attention2.PNG" width="30%" height="30%">
+<img src="/image/A3NCF_attention.PNG" width="50%" height="50%">  
+<img src="/image/A3NCF_attention2.PNG" width="30%" height="30%">  
 #### 5. Rating Prediction  
-<img src="/image/A3NCF_prediction.PNG" width="50%" height="50%">
+<img src="/image/A3NCF_prediction.PNG" width="50%" height="50%">  
