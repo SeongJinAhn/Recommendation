@@ -92,3 +92,14 @@ Solution they suggest : Attentive Facorization Matrix
 <img src="/image/attentive_network.PNG" width="80%" height="80%">
 
 ## Group Preference Based Bayesian Personalized Ranking for One-Class Collaborative Filtering (GBPR)
+
+## [A3NCF : An adaptive aspective attention model for rating prediction]
+(https://www.ijcai.org/proceedings/2018/0521.pdf)  
+![A3NCF](image/A3NCF_architecture.PNG)  
+  
+#### 1. Topic Model  
+#### 2. Embedding  
+#### 3. Fusion  
+#### 4. Attention Network  
+#### 5. Attentive Interaction  
+6. Rating Prediction  
