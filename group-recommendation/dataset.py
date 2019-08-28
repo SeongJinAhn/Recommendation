@@ -97,11 +97,11 @@ class GDataset(object):
                 user_input.append(u)
                 neg_item_input.append(j)
         pi_ni = [[pi, ni] for pi, ni in zip(pos_item_input, neg_item_input)]
-        return user_input, pi_ni
+        return user_input, pi_ni   #Matrix를 List꼴로
 
     def get_user_dataloader(self, batch_size):
-        user, positem_negitem_at_u = self.get_train_instances(self.user_trainMatrix)
-        train_data = TensorDataset(torch.LongTensor(user), torch.LongTensor(positem_negitem_at_u))
+        user, positem_negitem_at_u = self.get_train_instances(self.user_trainMatrix)  #List꼴로 받아서
+        train_data = TensorDataset(torch.LongTensor(user), torch.LongTensor(positem_negitem_at_u))  #Tensorset으로 바꿔줌
         user_train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
         return user_train_loader
 
