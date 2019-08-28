@@ -7,6 +7,7 @@ Processing datasets.
 import scipy.sparse as sp
 import numpy as np
 from time import time
+from torch.utils.data import TensorDataset, DataLoader
 
 ITEM_CLIP = 300 
 
@@ -102,5 +103,29 @@ class Dataset(object):
                 line = f.readline()
         lists.append(items)
         return lists
+
+    def get_train_instances(self, train): #train : matrix(user_path + "Train.txt")
+        user_input, pos_item_input, neg_item_input = [], [], []
+        num_users = train.shape[0]
+        num_items = train.shape[1]
+        for (u, i) in train.keys():
+                # positive instance
+            for _ in range(self.num_negatives):
+                pos_item_input.append(i)
+            # negative instances
+            for _ in range(self.num_negatives): # (u,j)가 없는 j를 찾는다
+                j = np.random.randint(num_items)
+                while (u, j) in train:
+                    j = np.random.randint(num_items)
+                user_input.append(u)
+                neg_item_input.append(j)
+        pi_ni = [[pi, ni] for pi, ni in zip(pos_item_input, neg_item_input)]
+        return user_input, pi_ni
+    
+    def get_dataloader(self, batch_size):
+        user, positem_negitem_at_u = self.get_train_instances(self.trainMatrix)
+        train_data = TensorDataset(torch.LongTensor(user), torch.LongTensor(positem_negitem_at_u))
+        user_train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
+        return user_train_loader
 
 
