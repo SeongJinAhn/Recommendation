@@ -85,18 +85,22 @@ class NAIS_torch(nn.Module):
         self.train_loss = args.train_loss
 
 #-------------------------------------------------------------------------------
-        self.c1 = nn.Parameter(torch.rand([self.num_items, self.embedding_size])*0.01)  # [n,e]
-        self.c2 = nn.Parameter(torch.zeros([1,self.embedding_size]))                    # [1,e]
-        self.embedding_Q_ = torch.cat([self.c1,self.c2], dim=0)                         # [n+1,e]
+        self.c1 = torch.rand([self.num_items, self.embedding_size])*0.01  # [n,e]
+        self.c2 = torch.zeros([1,self.embedding_size])                    # [1,e]
+        self.embedding_Q_ = nn.Parameter(torch.cat([self.c1,self.c2], dim=0))                         # [n+1,e]
         self.embedding_Q = nn.Parameter(torch.rand([self.num_items, self.embedding_size])*0.01) #[n,e]
-        self.bias = torch.zeros(self.num_items)
+        self.bias = nn.Parameter(torch.zeros(self.num_items))
 
         if self.algorithm == 0:
             self.W = nn.Parameter(torch.rand([self.embedding_size, self.weight_size])*(2 / (self.weight_size+self.embedding_size)))
         else:
             self.W = nn.Parameter(torch.rand([2*self.embedding_size, self.weight_size])*(2 / (self.weight_size+(2*self.embedding_size))))
         self.b = nn.Parameter(torch.rand([1,self.weight_size])*(2 / (self.weight_size+self.embedding_size)))
-        self.h = torch.ones([self.weight_size,1])
+        self.h = nn.Parameter(torch.ones([self.weight_size,1]))
+
+        nn.init.xavier_uniform(self.W)
+        nn.init.xavier_uniform(self.b)
+        nn.init.xavier_uniform(self.embedding_Q)
 #-------------------------------------------------------------------------------
     def attentive(self, q_):
         b = q_.shape[0]
@@ -106,47 +110,47 @@ class NAIS_torch(nn.Module):
         MLP_output = torch.mm(q_.reshape([-1,r]), self.W) + self.b
 
         if self.activation==0:
-            MLP_output = nn.ReLU()(MLP_output)
+            MLP_output = nn.Sigmoid()(MLP_output)
         if self.activation==1:
             MLP_output = nn.Sigmoid()(MLP_output)
         if self.activation==2:
             MLP_output = nn.Tanh()(MLP_output)
 
-        A_ = torch.mm(MLP_output, self.h).reshape([b,n])
+        A_ = torch.mm(MLP_output, self.h).reshape([b,n])    # f(p,q)
         exp_A_ = torch.exp(A_)
-        #num_idx = self.num_idx.sum()
-        mask_mat = ~(torch.ones(b,n).cumsum(dim=1).t() > self.num_idx).t()
+        num_idx = self.num_idx.sum()
+        mask_mat = ~(torch.ones(b,n).cumsum(dim=1).t() > num_idx).t()
         exp_A_ = mask_mat.type(torch.FloatTensor) * exp_A_
         exp_sum = exp_A_.sum(1)
         exp_sum = torch.pow(exp_sum, self.beta)
 
-        A = (exp_A_ / exp_sum.reshape(-1,1)).reshape(-1,n,1)
-        A= A * self.embedding_q
-        A = A.sum(1)
-        return A
+        A = (exp_A_ / exp_sum.reshape(-1,1)).reshape(-1,n,1)  # a_ij
+
+        A= A * self.embedding_q_ #user의 영향력 * user vector => group을 user vector로
+        return A.sum(1)
 
     def forward(self,user_input, num_idx, item_input, labels):
         self.user_input = user_input.type(torch.ByteTensor).tolist()
         self.num_idx = num_idx
-        self.item_input = user_input.type(torch.ByteTensor).tolist()
+        self.item_input = item_input.reshape(-1,1).type(torch.ByteTensor).tolist()
         self.labels = labels
 
-        self.embedding_q_ = self.embedding_Q[self.user_input]
-        self.embedding_q = self.embedding_Q[self.item_input]
+        self.embedding_q_ = self.embedding_Q[self.user_input]    #q_j user (260,53,16)
+        self.embedding_q = self.embedding_Q[self.item_input]     #p_i item (260,1,16)
 
         if self.algorithm == 0:
-            self.a_ = self.attentive(self.embedding_q_ * self.embedding_q)
+            self.a_ = self.attentive(self.embedding_q_ + self.embedding_q)
         else:
             self.a_ = self.attentive(torch.cat([self.embedding_q_ * self.embedding_q],dim=0))
 
         
-        self.embedding_q = self.embedding_q.sum()
-        self.bias_i = self.bias[self.item_input]
+        self.embedding_q = self.embedding_q.sum(1) #item을 합
+        self.bias_i = self.bias[self.item_input].reshape(-1) #self.item_input : 260 x 1
 
         self.coeff = torch.pow(self.num_idx, -self.alpha)
-        self.output = nn.Sigmoid()(self.coeff * self.a_.sum(1))
+        self.output = nn.Sigmoid()(self.coeff * (self.a_*self.embedding_q).sum(1) + self.bias_i)
 
-        loss = nn.BCELoss()(self.output, labels) + \
+        loss = nn.BCELoss()(self.output, labels)  + \
                         self.lambda_bilinear * self.embedding_Q.norm() + \
                         self.gamma_bilinear * self.embedding_Q_.norm() + \
                         self.eta_bilinear * self.W.norm()
@@ -172,7 +176,7 @@ def training(flag, model, dataset,  epochs, num_negatives):
 def training_loss(model, batches):
     train_loss = 0.0
     num_batch = len(batches[1])
-    optimizer = optim.SGD(model.parameters(), lr=0.01)
+    optimizer = optim.Adam(model.parameters(), lr=0.01)
 
     for index in range(num_batch):
         user_input, num_idx, item_input, labels = data.batch_gen(batches, index)
