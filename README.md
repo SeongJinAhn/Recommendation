@@ -125,3 +125,9 @@ embedding된 vector에 trainable한 diagonal matrix와, relation에 따라 다�
 
 ## IntentGC
 bit-wise => vector-wise  
+
+## VR-GCN
+기존 GCN이 multi-relation을 잘 예측x =>  VR-GCN  
+directed graph를 가정했다. (우리 문제와는 다르지만, idea를 얻어보자)  
+u를 예측하고 싶을때 u-(r_i)->v_i면 v_i - r_i  
+			 u<-(r_j)-v_j면 v_j + r_i
