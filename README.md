@@ -108,3 +108,18 @@ adopt the **addiction fusion (Not Concat)** which has been applied in RBLT and I
 <img src="/image/A3NCF_attention2.PNG" width="30%" height="30%">  
 #### 5. Rating Prediction  
 <img src="/image/A3NCF_prediction.PNG" width="50%" height="50%">  
+
+## HoP-Rec
+1. User U Item의 Adjacent Matrix를 기반으로 Graph를 만들고, 각 user에서 pagerank를 돌려서 neighbor item을 선택  
+2. Personalized Ranking에서 다음 neighbor들을 비교한다
+
+## PinSAGE
+Random Walk기반으로 Neighbor선택이 아니라, Neighbor들의 가중치를 선택  
+GraphSAGE의 Aggregate function을 그 가중치를 바탕으로 형성
+
+## Decagon
+Multi-relation을 예측하는 방법  
+embedding된 vector에 trainable한 diagonal matrix와, relation에 따라 다른 trainable한 matrix를 곱하는 방식으로 예측
+
+## IntentGC
+bit-wise => vector-wise  
